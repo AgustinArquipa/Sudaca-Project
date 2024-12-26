@@ -1,6 +1,6 @@
 # Sudaca Box-Billing Project
 
-<img src="sudaca.PNG" alt="Sudaca Logo" width="300" style="background-color:#dddcdc; padding: 10px; border-radius: 10px;">
+<img src="static/assets/img/sudaca.PNG" alt="Sudaca Logo" width="300" style="background-color:#dddcdc; padding: 10px; border-radius: 10px;">
 
 Este es un proyecto base de **Django** diseñado para gestionar una caja registradora con funcionalidades de movimientos y arqueos. Proporciona una estructura escalable y está preparado para ser utilizado con una base de datos PostgreSQL.
 
