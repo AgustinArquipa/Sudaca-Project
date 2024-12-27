@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 @login_required
 def home(request):
-    messages.info(request, "Panel de graficos")
     context = {
         'segment': 'home', # Esto es para usar la clase active en el template
     }

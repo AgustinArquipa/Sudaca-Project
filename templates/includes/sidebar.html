@@ -1,10 +1,10 @@
 {% load static %}
 
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image="/static/assets/img/sidebar-1.jpg">
+    <div class="sidebar" data-color="red" data-background-color="red" data-image="/static/assets/img/sidebar-1.jpg">
       <div class="logo">
         <a target="_blank" rel="noopener noreferrer" 
-           href="http://www.isi.com.ar" class="simple-text logo-normal">
-           <img style="filter: drop-shadow(0 2px 3px rgba(0,0,0,0.8));" src="{% static 'assets/img/favicon.png' %}" alt="ISI Instituto">
+           href="#" class="simple-text logo-tim">
+           <img style="filter: drop-shadow(0 2px 3px rgba(0,0,0,0.8));" src="{% static 'assets/img/sudaca_logo.png' %}" alt="Sudaca">
         </a>
       </div>
       <div class="sidebar-wrapper">
@@ -38,7 +38,7 @@
               <p>Movimientos</p>
             </a>
           </li>
-          {% if request.user.is_superuser %}
+          {% comment %} {% if request.user.is_superuser %}
           <li class="nav-item {% if 'ui-tables' in segment %} active {% endif %}">
             <a class="nav-link" href="{% url 'core_app:tables' %}">
               <i class="material-icons">content_paste</i>
@@ -69,7 +69,7 @@
               <p>Notifications</p>
             </a>
           </li>
-          {% endif %}
+          {% endif %} {% endcomment %}
 
         {% else %}
 

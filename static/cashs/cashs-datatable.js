@@ -21,6 +21,7 @@ $(document).ready(function () {
 
     // Llamar a hideCreateButton() donde necesites ocultarlo
     hideCreateButton();
+    
 });
 
 
@@ -32,17 +33,6 @@ function initializeDataTable() {
     // Inicializar el DataTable
     var datatable = $('#tableCash').DataTable({
         layout: {
-            top2Start: function () {
-                let toolbar = document.createElement('div');
-                toolbar.innerHTML = `
-                <div>
-                    <a href="${urls.cash_create}" class="btn btn-primary btn-simple btn-sm me-1 my-2" type="button">
-                        <span class="fas fa-plus" data-fa-transform="shrink-3 down-2"></span>
-                        <span class="d-none d-sm-inline-block ms-1">Nuevo Cliente</span>
-                    </a>
-                </div>`;
-                return toolbar;
-            },
             topStart: {
                 pageLength: {
                     menu: [ 5, 10, 50, 100 ]
@@ -90,15 +80,14 @@ function initializeDataTable() {
         
         //Definir las columnas de la tabla
         columns: [
-            { title: "ID", data: 'id', className: "text-center d-none d-md-table-cell", responsivePriority: 4, width: "10%" }, 
-            { title: "Monto Inicial", data: 'initial_balance', className: 'text-center d-node d-md-table-cell', responsivePriority: 1, width: "25%" }, 
-            { title: "Monto Final", data: 'current_balance', className: 'text-center d-node d-md-table-cell', responsivePriority: 3, width: "25%" }, 
+            { title: "ID", data: 'id', className: "text-center d-none d-md-table-cell", responsivePriority: 4 }, 
+            { title: "Monto Inicial", data: 'initial_balance', className: 'text-center d-node d-md-table-cell', responsivePriority: 1 }, 
+            { title: "Monto Final", data: 'current_balance', className: 'text-center d-node d-md-table-cell', responsivePriority: 3 }, 
             {
                 title: "Estado", 
                 data: 'status', 
                 className: 'text-center d-node d-md-table-cell', 
                 responsivePriority: 5, 
-                width: "15%",
                 render: function(data, type, row) {
                     if (type === 'display') {
                         if (data === 'open') {
@@ -115,7 +104,6 @@ function initializeDataTable() {
                 data: 'created_at',
                 className: 'text-center d-node d-md-table-cell', 
                 responsivePriority: 2, 
-                width: "15%",
                 render: function(data, type, row) {
                     if (type === 'display' && data) {
                         return formatDateTime(data);  // Aplica la función de formateo de fecha
@@ -123,14 +111,13 @@ function initializeDataTable() {
                     return data; // Devuelve el valor sin formato para exportar u ordenar
                 }
             },
-            { title: "Fecha de cierre", data: 'close_date', className: 'text-center d-node d-md-table-cell', responsivePriority: 3, width: "25%" }, 
+            { title: "Cierre", data: 'close_date', className: 'text-center d-node d-md-table-cell', responsivePriority: 3 }, 
             {   
                 title: "Acciones",
                 className: 'text-center',
                 data: null,
                 orderable: false,
                 responsivePriority: 1,
-                with: "25%",
                 render: function (data) {
                     return `
                     <div class="d-flex p-0 m-0 justify-content-center">
@@ -157,6 +144,7 @@ function initializeDataTable() {
             search: "",
 
         },
+        autoWidth: true,
         responsive: true,
     }); 
 
@@ -521,4 +509,16 @@ $('#movementCreateModal').on('shown.bs.modal', function () {
 // Ocultar modal
 $('#movementCreateModal').on('hidden.bs.modal', function () {
     $(this).attr('aria-hidden', 'true');
+});
+
+// Seleccionar el botón por el texto "Cerrar" o alguna característica única
+$('.modal-footer .btn-secondary').on('click', function () {
+    // Obtén el ID del modal desde el atributo data-modal-id
+    var modalId = $(this).data('modal-id');
+    if (modalId) {
+        $('#' + modalId).modal('hide'); // Cierra el modal correspondiente
+        console.log(`El modal con ID "${modalId}" fue cerrado.`);
+    } else {
+        console.warn('No se encontró el atributo data-modal-id en el botón.');
+    }
 });

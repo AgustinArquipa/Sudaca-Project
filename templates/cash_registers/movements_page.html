@@ -21,6 +21,20 @@
     {% csrf_token %}
     <!-- Incluyendo DataTable Generico -->
     {% include "components/tables/datatable.html" with tableId="tableMovements" name="Movimientos" url=url_datatable urls=urls %}
+
+    <!-- Botones para navegar -->
+   <div class="mt-4 d-flex justify-content-end gap-2">
+      <button 
+         class="btn btn-secondary" 
+         onclick="goBack()">
+         Volver Atrás
+      </button>
+      <button 
+         class="btn btn-primary" 
+         onclick="goForward()">
+         Avanzar
+      </button>
+   </div>
     
  </div>
 
@@ -31,6 +45,17 @@
        "movements_update": "{% url 'cash_app:movements_update' 0 %}",
        "movements_detail": "{% url 'cash_app:movements_detail' 0 %}",
        "movements_delete": "{% url 'cash_app:movements_delete' 0 %}"
+   }
+</script>
+<script>
+   // Función para regresar a la página anterior
+   function goBack() {
+       window.history.back();
+   }
+
+   // Función para avanzar a la siguiente página en el historial
+   function goForward() {
+       window.history.forward();
    }
 </script>
 

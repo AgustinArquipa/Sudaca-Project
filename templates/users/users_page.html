@@ -16,6 +16,20 @@
     {% csrf_token %}
     <!-- Incluyendo DataTable Generico -->
     {% include "components/tables/datatable.html" with tableId="tableUser" name="Usuarios" url=url_datatable urls=urls %}
+
+    <!-- Botones para navegar -->
+   <div class="mt-4 d-flex justify-content-end gap-2">
+      <button 
+         class="btn btn-secondary" 
+         onclick="goBack()">
+         Volver Atrás
+      </button>
+      <button 
+         class="btn btn-primary" 
+         onclick="goForward()">
+         Avanzar
+      </button>
+   </div>
     
  </div>
 
@@ -26,6 +40,17 @@
        "user_edit": "{% url 'users_app:users_update' 0 %}",
        "user_detail": "{% url 'users_app:users_detail' 0 %}",
        "user_delete": "{% url 'users_app:users_delete' 0 %}"
+   }
+</script>
+<script>
+   // Función para regresar a la página anterior
+   function goBack() {
+       window.history.back();
+   }
+
+   // Función para avanzar a la siguiente página en el historial
+   function goForward() {
+       window.history.forward();
    }
 </script>
 
